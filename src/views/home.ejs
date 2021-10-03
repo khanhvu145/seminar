@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <%- include('layouts/header') -%>
+    
+    <div class="tab-content" id="nav-tabContent">
+        <!-- Tab lịch thi đấu -->
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container">
+                <div class="competition mt-4">
+                    <div class="clubs__heading">
+                        <div class="competition__filter">
+                            <div class="clubs__heading-season">
+                                <div>
+                                    <p>Mùa giải</p>
+                                    <h4>2021 - 2022</h4>
+                                </div>
+                                <ion-icon name="filter"></ion-icon>
+                            </div>
+                            <div class="clubs__heading-season">
+                                <div>
+                                    <p>Câu lạc bộ</p>
+                                    <h4>Tất cả câu lạc bộ</h4>
+                                </div>
+                                <ion-icon name="filter"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="clubs__heading-logo">
+                            <img src="/imgs/Premier_League_Logo.png" alt="">
+                        </div>
+                    </div>
+                    <% schedules.forEach(function(schedule){ %>
+                        <div class="competition__main mt-4">
+                            <div class="competition__main-heading">
+                                <p class="competition__title"><%= schedule.date %></p>
+                            </div>
+                            <% schedule.infors.forEach(function(infor){ %>
+                                <div class="competition__main-content">
+                                    <div class="competition__content-item">
+                                        <div class="competition__content-team" style="margin-left: auto;">
+                                            <p class="competition__content-name"><%= infor.team_1 %></p>
+                                            <% for(let i = 0; i < clubs.length; i++ ){ %>
+                                                <%if (clubs[i].name == infor.team_1) { %>
+                                                    <img src="<%= clubs[i].logo %>" alt="" class="competition__content-logo">
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+                                        <div class="competition__content-time">
+                                            <%= infor.time %>
+                                        </div>
+                                        <div class="competition__content-team">
+                                            <% for(let i = 0; i < clubs.length; i++ ){ %>
+                                                <%if (clubs[i].name == infor.team_2) { %>
+                                                    <img src="<%= clubs[i].logo %>" alt="" class="competition__content-logo">
+                                                <% } %>
+                                            <% } %>
+                                            <p class="competition__content-name"><%= infor.team_2 %></p>
+                                        </div>
+                                    </div>
+                                    <div class="competition__content-stadium">
+                                        <img src="/imgs/stadium.png" alt="">
+                                        <% for(let i = 0; i < clubs.length; i++ ){ %>
+                                            <%if (clubs[i].name == infor.team_1) { %>
+                                                <%= clubs[i].stadium_name %>
+                                            <% } %>
+                                        <% } %>
+                                    </div>
+                                    <div style="display: flex;align-items: center;justify-content: center;">
+                                        <div class="competition__content-time competition__content-see">
+                                            Xem thêm
+                                            <ion-icon name="arrow-forward-outline"></ion-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+        <!-- Tab bảng xếp hạng -->
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="rank mt-4">
+                <div class="container">
+                    <div class="clubs__heading">
+                        <div class="clubs__heading-season">
+                            <div>
+                                <p>Mùa giải</p>
+                                <h4>2021 - 2022</h4>
+                            </div>
+                            <ion-icon name="filter"></ion-icon>
+                        </div>
+                        <div class="clubs__heading-logo">
+                            <img src="/imgs/Premier_League_Logo.png" alt="">
+                        </div>
+                    </div>
+                    <table class="table align-middle mt-4">
+                        <thead class="table-light">                          
+                            <tr class="rank__tr">
+                                <th scope="col">#</th>
+                                <th scope="col">Câu lạc bộ</th>
+                                <th scope="col">Số trận</th>
+                                <th scope="col">Thắng</th>
+                                <th scope="col">Thắng</th>
+                                <th scope="col">Thua</th>
+                                <th scope="col">Bàn thắng</th>
+                                <th scope="col">Bàn thua</th>
+                                <th scope="col">Hiệu số</th>
+                                <th scope="col">Điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let rank = 0 %>
+                            <% clubs_point.forEach(function(point){ %>
+                                <% for(let i = 0; i < clubs.length; i++ ){ %>
+                                    <%if (clubs[i].name == point.name) { %>
+                                        <tr>
+                                            <th class="fw-bold" scope="row"><%= ++rank %></th>
+                                            <td>
+                                                <div class="rank__team">
+                                                    <img src="<%= clubs[i].logo %>" alt="">
+                                                    <p class="rank__team-name"><%= clubs[i].name %></p>
+                                                </div>
+                                            </td>
+                                            <td><%= point.played %></td>
+                                            <td><%= point.win %></td>
+                                            <td><%= point.drawn %></td>
+                                            <td><%= point.lost %></td>
+                                            <td><%= point.GF %></td>
+                                            <td><%= point.GA %></td>
+                                            <td><%= point.GF - point.GA %></td>
+                                            <td class="fw-bold"><%= point.point %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Tab câu lạc bộ -->
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="clubs mt-4">
+                <div class="container">
+                    <div class="clubs__heading">
+                        <div class="clubs__heading-season">
+                            <div>
+                                <p>Mùa giải</p>
+                                <h4>2021 - 2022</h4>
+                            </div>
+                            <ion-icon name="filter"></ion-icon>
+                        </div>
+                        <div class="clubs__heading-logo">
+                            <img src="/imgs/Premier_League_Logo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="clubs__content mt-4">
+                        <% clubs.forEach(function(club){ %>
+                            <div class="clubs__item" style="background-color: <%= club.color %>;">
+                                <div class="clubs__item-img">
+                                    <img src="<%= club.stadium_img %>" alt="">
+                                </div>
+                                <div class="clubs__item-info">
+                                    <h4 class="clubs__item-name"><%= club.name %></h4>
+                                    <p class="clubs__item-stadium"><%= club.stadium_name %></p>
+                                    <a href="" class="clubs__item-link">
+                                        Club Profile
+                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                    </a>
+                                </div>
+                                <div class="clubs__item-logo">
+                                    <img src="<%= club.logo %>" alt="">
+                                </div>
+                            </div>  
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab cầu thủ -->
+        <div class="tab-pane fade" id="nav-players" role="tabpanel" aria-labelledby="nav-players-tab">
+            <div class="players mt-4">
+                <div class="container">
+                    <div class="clubs__heading">
+                        <div class="competition__filter">
+                            <div class="clubs__heading-season">
+                                <div>
+                                    <p>Mùa giải</p>
+                                    <h4>2021 - 2022</h4>
+                                </div>
+                                <ion-icon name="filter"></ion-icon>
+                            </div>
+                            <div class="clubs__heading-season">
+                                <div>
+                                    <p>Câu lạc bộ</p>
+                                    <h4>Tất cả câu lạc bộ</h4>
+                                </div>
+                                <ion-icon name="filter"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="clubs__heading-logo">
+                            <img src="/imgs/Premier_League_Logo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="players__content mt-4">
+                        <% players.forEach(function(player){ %>
+                            <div class="clubs__item players__item">
+                                <div class="clubs__item-img">
+                                    <img src="<%= player.img %>" alt="">
+                                </div>
+                                <div class="clubs__item-info">
+                                    <h4 class="players__item-name"><%= player.name %></h4>
+                                    <p class="players__item-position"><%= player.position %></p>
+                                    <a href="" class="players__item-link">
+                                        Profile
+                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                    </a>
+                                </div>
+                                <div class="players__item-logo">
+                                    <% for(let i = 0; i < clubs.length; i++ ){ %>
+                                        <%if (clubs[i].name == player.club) { %>
+                                            <img src="<%= clubs[i].logo %>" alt="">
+                                        <% } %>
+                                    <% } %>                  
+                                </div>
+                            </div>  
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('layouts/footer') -%>
+</body>
+</html>

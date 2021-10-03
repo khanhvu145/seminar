@@ -1,0 +1,367 @@
+html{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(146, 145, 145); 
+}
+
+.competition__filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.competition__main-heading{
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 24px;
+}
+
+.competition__main{
+    margin-bottom: 64px;
+}
+
+.competition__main-content{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    grid-column-gap: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.competition__content-see{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    padding: 12px;
+}
+.competition__content-see > ion-icon {
+    margin-left: 8px;
+}
+.competition__content-see:hover{
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+
+.competition__content-item{
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-column-gap: 8px;
+    padding: 24px;
+}
+
+.competition__content-logo{
+    margin: 0 8px;
+}
+
+.competition__content-stadium{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding-bottom: 16px;
+}
+
+.competition__content-stadium > img {
+    margin-right: 16px;
+}
+
+.competition__content-team{
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+.competition__content-name{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-top: 8px;
+}
+
+.competition__content-time{
+    border: 1px solid #ccc;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank__team{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.rank__team-name{
+    margin-left: 12px;
+}
+
+tr{
+    border-bottom: 1px solid #ccc;
+}
+
+th,td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 20px 0;
+}
+.rank__tr{
+    height: 50px;
+}
+
+.clubs__heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.clubs__heading-season{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    position: relative;
+}
+
+.clubs__heading-season::after{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #ccc;
+}
+
+.clubs__heading-season > ion-icon {
+    margin-left: 80px;
+    color: rgb(128, 127, 127);
+}
+
+.clubs__heading-season p {
+    margin-bottom: 8px;
+    color: #963cff;
+    font-weight: 500;
+    font-style: oblique;
+}
+
+.clubs__heading-season h4 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.clubs__heading-logo{
+    padding: 18px;
+}
+
+.clubs__content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    padding-bottom: 32px;
+}
+
+.clubs__item{
+    position: relative;
+    cursor: pointer;
+}
+
+.clubs__item:hover .clubs__item-img > img{
+    transform: scale(2);
+}
+
+.clubs__item-img{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+.clubs__item-img > img{
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    transition: all 1.5s;
+}
+
+.clubs__item-info{
+    padding: 16px 0;
+    margin-top: 16px;
+}
+
+.clubs__item-link,
+.clubs__item-stadium,
+.clubs__item-name{
+    text-align: center;
+    color: #fff;
+}
+
+.clubs__item-name{
+    font-weight: 600;
+    font-size: 20px;
+    padding-top: 32px;
+}
+
+.clubs__item-stadium{
+    padding-top: 16px;
+}
+
+.clubs__item-link{
+    display: block;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    padding-top: 28px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.clubs__item-link::after{
+    content: "";
+    position: absolute;
+    height: 1px;
+    background-color: #fff;
+    width: 0;
+    bottom: 0;
+    transition: all ease 0.5s;
+}
+.clubs__item-link:hover{
+    color: #fff;
+}
+.clubs__item-link:hover::after{
+    width: 20%;
+}
+
+.clubs__item-link > ion-icon {
+    margin-left: 8px;
+}
+
+.clubs__item-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clubs__item-logo > img {
+    width: 70px;
+    height: 70px;
+}
+
+.players__content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    padding-bottom: 32px;
+}
+
+.players__item{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.players__item-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.players__item-logo > img {
+    width: 50px;
+    height: 50px;
+}
+
+.clubs__item-link,
+.clubs__item-stadium,
+.clubs__item-name{
+    text-align: center;
+    color: #fff;
+}
+
+.players__item-name{
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+}
+.players__item-link{
+    display: block;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    text-align: center;
+    color: #000;
+}
+
+.players__item-position{
+    padding: 16px 0;
+    opacity: 0.5;
+    text-align: center;
+    color: #000;
+}
+
+.footer{
+    position: relative;
+}
+
+.footer::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #ca9bdd, #3F1052, #ca9bdd);
+}
+
+.footer__content{
+    padding: 40px 0;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.footer__item:nth-child(1){
+    margin-bottom: 16px;
+}
+
